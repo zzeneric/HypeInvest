@@ -102,7 +102,7 @@ class News:
         return messages
 
 
-topic = "Bitcoin"
+topic = "Facebook"
 
 twitter = Twitter()
 reddit = Reddit()
@@ -128,7 +128,7 @@ reddit_perception = 0.0
 for redditMessage in redditMessages:
     reddit_perception += ((redditMessage.popularity + 1) * redditMessage.perception)
     reddit_sum += (redditMessage.popularity + 1)
-if twitter_sum > 10000:
+if reddit_sum > 10000:
     reddit_val = 1
 else:
     reddit_val = reddit_sum / 10000
