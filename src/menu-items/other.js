@@ -8,6 +8,7 @@ const icons = { IconBrandChrome, IconHelp };
 
 const other = {
     id: 'sample-docs-roadmap',
+    title: 'Information',
     type: 'group',
     children: [
         {
@@ -17,8 +18,8 @@ const other = {
             url: '/sample-page',
             icon: icons.IconBrandChrome,
             breadcrumbs: false
-        },
-        {
+        }
+        /*{
             id: 'documentation',
             title: 'Documentation',
             type: 'item',
@@ -26,7 +27,7 @@ const other = {
             icon: icons.IconHelp,
             external: true,
             target: true
-        }
+        }*/
     ]
 };
 

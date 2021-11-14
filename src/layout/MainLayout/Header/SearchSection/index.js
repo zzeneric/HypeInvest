@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-//import { useNavigate } from "react-router-dom";
 
 // material-ui
 import { useTheme, styled } from '@mui/material/styles';
@@ -127,12 +126,11 @@ const SearchSection = () => {
     }
 
     function HandleKeyPress(e){
-        //let navigate = useNavigate();
 
         var key=e.keyCode || e.which;
-        if (key==13){
+        if (key == 13){
             console.log(value)
-            //navigate("/home", { replace: true });
+            window.location = '/search/?query=' + value;
         }
     }
 

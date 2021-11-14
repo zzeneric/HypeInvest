@@ -13,6 +13,9 @@ import data from './testData.json'
 const newData = require('./currentSearch.json');
 console.log(newData);
 
+let query = (new URLSearchParams(window.location.search)).get("query")
+console.log(query)
+
 fetch(newData.api)
         .then(response => response.json())
         .then(currData => console.log(currData));
