@@ -128,7 +128,7 @@ reddit_perception = 0.0
 for redditMessage in redditMessages:
     reddit_perception += ((redditMessage.popularity + 1) * redditMessage.perception)
     reddit_sum += (redditMessage.popularity + 1)
-if twitter_sum > 10000:
+if reddit_sum > 10000:
     reddit_val = 1
 else:
     reddit_val = reddit_sum / 10000
@@ -147,7 +147,10 @@ news_perception = news_perception / len(newsMessages)
 
 total_score = (((twitter_val + reddit_val) / 2) + news_val) / 2
 total_perception = (((twitter_perception + reddit_perception) / 2) + news_perception) / 2
-overall_rating = total_score * total_perception * 100
 
-print(total_score, total_perception, overall_rating)
+import math
+
+overall_rating = abs(total_perception) / total_perception * pow(math.tanh(8 * total_score * total_perception), 2) * 100 #Overall Rating = tanh^2(constant * popularity * perception) * 100 * -1 if perception is negative, this gives a range from [-100, 100]
+
+print(total_score, total_perception, overall_rating) 
 stock = Stock(total_perception, total_score, overall_rating)
