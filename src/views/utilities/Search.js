@@ -16,14 +16,17 @@ fetch("http://127.0.0.1:5000/test?name=" + query)
             console.log(currData);
             //document.getElementById('summaryTitle').title = 'Lol'
             //document.getElementById('summaryTitle').title = 'Market Summary > ' + currData[0] + '[' + currData[1] + "]"
-            document.getElementById('name').innerText = 'About ' + currData[0]
+            //document.getElementById('name').innerText = 'About ' + currData[0]
             document.getElementById('handle').innerText = currData[1]
             document.getElementById('desc').innerText = currData[2]
             document.getElementById('market_cap').innerText = currData[3]
             document.getElementById('similar').innerText = currData[4]
-            document.getElementById('rating_total').innerText = currData[5]
-            document.getElementById('rating_perception').innerText = currData[6]
-            document.getElementById('rating_popularity').innerText = currData[7]
+            document.getElementById('rating_total').innerText = (currData[5]*100).toFixed(1)
+
+            document.getElementById('rating_perception').innerText = (currData[6]*100).toFixed(1)
+            document.getElementById('rating_popularity').innerText = (currData[7]*10).toFixed(1)
+            document.getElementById('rating_growth').innerText = (currData[11]*100).toFixed(1)
+            document.getElementById('rating_recommend').innerText = (currData[12]*10).toFixed(1)
 
             
             document.getElementById('open').innerText = currData[9]
@@ -56,17 +59,6 @@ const Typography = () => (
 
                 <SubCard title="General Information">
                     <Grid container direction="column" spacing={1}>
-                        <Grid item>
-                            <MuiTypography variant="subtitle1" gutterBottom id="name">
-                                About {query}
-                            </MuiTypography>
-                        </Grid>
-                        <Grid item>
-                            <MuiTypography variant="subtitle2" gutterBottom id="desc">
-                                Loading...
-                            </MuiTypography>
-                        </Grid>
-
                         <Grid item>
                             <MuiTypography variant="subtitle1" gutterBottom>
                                 NSYE Handle
@@ -163,7 +155,37 @@ const Typography = () => (
                             </MuiTypography>
                         </Grid>
 
+                        <Grid item>
+                            <MuiTypography variant="subtitle1" gutterBottom>
+                                Projected Growth Rating
+                            </MuiTypography>
+                        </Grid>
+                        <Grid item>
+                            <MuiTypography variant="subtitle2" gutterBottom id="rating_growth">
+                                Loading...
+                            </MuiTypography>
+                        </Grid>
+
+                        <Grid item>
+                            <MuiTypography variant="subtitle1" gutterBottom>
+                                Recommended Rating
+                            </MuiTypography>
+                        </Grid>
+                        <Grid item>
+                            <MuiTypography variant="subtitle2" gutterBottom id="rating_recommend">
+                                Loading...
+                            </MuiTypography>
+                        </Grid>
+
                     </Grid>
+                </SubCard>
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+                <SubCard title="Description">
+                    <MuiTypography variant="subtitle2" gutterBottom id="desc">
+                        Loading...
+                    </MuiTypography>
                 </SubCard>
             </Grid>
             

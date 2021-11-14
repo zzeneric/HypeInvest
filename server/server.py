@@ -42,6 +42,8 @@ def testing():
     open_price = stock_data["regularMarketOpen"]
     close_price = stock_data["previousClose"]
     logo = stock_data["logo_url"]
+    growth = stock_data["earningsGrowth"]
+    recommend = stock_data["recommendationMean"]
 
     class Message:
         def __init__(self, perception, popularity, platform):
@@ -188,7 +190,7 @@ def testing():
 
     print("Getting values for stock: " + name)
     print(total_score, total_perception, overall_rating)
-    stock_list = [name, stock_tkr, description, market_cap, similar, total_perception, total_score, overall_rating, current_price, open_price, close_price, logo]
+    stock_list = [name, stock_tkr, description, market_cap, similar, total_perception, total_score, overall_rating, current_price, open_price, close_price, logo, growth, recommend]
     stock = Stock(total_perception, total_score, overall_rating)
 
     return jsonify(stock_list)
