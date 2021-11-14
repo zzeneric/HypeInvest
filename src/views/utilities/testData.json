@@ -1,6 +1,8 @@
 {
     "name": "Twitter",
     "handle": "TWTR",
+    "info": "Twitter, Inc. is a global platform for public self-expression and conversation in real time. It provides a network that connects users to people.",
+
     "market_cap": "41.78B",
     "prev_close": 51.98,
     "open": 52.30,

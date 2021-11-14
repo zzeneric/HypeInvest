@@ -10,8 +10,10 @@ import ChartCard from './ChartCard'
 
 import data from './testData.json'
 
-// ==============================|| TYPOGRAPHY ||============================== //
+import useFetch from './stock-info';
 
+
+// ==============================|| TYPOGRAPHY ||============================== //
 const Typography = () => (
     <MainCard title="Market Summary > Twitter [TWTR]" secondary={<SecondaryAction link="https://next.material-ui.com/system/typography/" />}>
         <br/>
@@ -21,20 +23,20 @@ const Typography = () => (
                 <ChartCard>
                 </ChartCard>
             </Grid>
-                
 
+            
             <Grid item xs={12} sm={6}>
 
                 <SubCard title="General Information">
                     <Grid container direction="column" spacing={1}>
                         <Grid item>
                             <MuiTypography variant="subtitle1" gutterBottom>
-                                About Twitter
+                                About {data.name}
                             </MuiTypography>
                         </Grid>
                         <Grid item>
                             <MuiTypography variant="subtitle2" gutterBottom>
-                                Twitter, Inc. is a global platform for public self-expression and conversation in real time. It provides a network that connects users to people.
+                                {data.info}
                             </MuiTypography>
                         </Grid>
 
@@ -45,7 +47,7 @@ const Typography = () => (
                         </Grid>
                         <Grid item>
                             <MuiTypography variant="subtitle2" gutterBottom>
-                                data.name
+                                {data.handle}
                             </MuiTypography>
                         </Grid>
 
@@ -56,7 +58,7 @@ const Typography = () => (
                         </Grid>
                         <Grid item>
                             <MuiTypography variant="subtitle2" gutterBottom>
-                                41.78B
+                                {data.market_cap}
                             </MuiTypography>
                         </Grid>
 
@@ -67,7 +69,7 @@ const Typography = () => (
                         </Grid>
                         <Grid item>
                             <MuiTypography variant="subtitle2" gutterBottom>
-                                51.98
+                                {data.prev_close}
                             </MuiTypography>
                         </Grid>
 
@@ -78,7 +80,7 @@ const Typography = () => (
                         </Grid>
                         <Grid item>
                             <MuiTypography variant="subtitle2" gutterBottom>
-                                52.30
+                                {data.open}
                             </MuiTypography>
                         </Grid>
 
