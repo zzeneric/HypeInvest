@@ -10,8 +10,12 @@ import ChartCard from './ChartCard'
 
 import data from './testData.json'
 
-import useFetch from './stock-info';
+const newData = require('./currentSearch.json');
+console.log(newData);
 
+fetch(newData.api)
+        .then(response => response.json())
+        .then(currData => console.log(currData));
 
 // ==============================|| TYPOGRAPHY ||============================== //
 const Typography = () => (

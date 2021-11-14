@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+//import { useNavigate } from "react-router-dom";
 
 // material-ui
 import { useTheme, styled } from '@mui/material/styles';
@@ -14,6 +15,8 @@ import Transitions from 'ui-component/extended/Transitions';
 // assets
 import { IconAdjustmentsHorizontal, IconSearch, IconX } from '@tabler/icons';
 import { shouldForwardProp } from '@mui/system';
+
+const newData = require('../../../../views/utilities/currentSearch.json');
 
 // styles
 const PopperStyle = styled(Popper, { shouldForwardProp })(({ theme }) => ({
@@ -119,6 +122,20 @@ const SearchSection = () => {
     const theme = useTheme();
     const [value, setValue] = useState('');
 
+    function set(e) {
+        setValue(e.target.value)
+    }
+
+    function HandleKeyPress(e){
+        //let navigate = useNavigate();
+
+        var key=e.keyCode || e.which;
+        if (key==13){
+            console.log(value)
+            //navigate("/home", { replace: true });
+        }
+    }
+
     return (
         <>
             <Box sx={{ display: { xs: 'block', md: 'none' } }}>
@@ -165,8 +182,9 @@ const SearchSection = () => {
                 <OutlineInputStyle
                     id="input-search-header"
                     value={value}
-                    onChange={(e) => setValue(e.target.value)}
+                    onChange={(e) => set(e)}
                     placeholder="Search"
+                    onKeyDown={(e) => HandleKeyPress(e)}
                     startAdornment={
                         <InputAdornment position="start">
                             <IconSearch stroke={1.5} size="1rem" color={theme.palette.grey[500]} />
