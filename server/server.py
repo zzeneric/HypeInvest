@@ -15,13 +15,14 @@ def home():
 @app.route("/test")
 def testing():
     stock_tkr = request.args.get('name')
-    print(stock_tkr)
+    #print(stock_tkr)
 
-    from flair.models import TextClassifier
+    from flair.models import TextClassifier 
     from flair.data import Sentence
     from newsapi import NewsApiClient
     import tweepy
     import praw
+    from apiclient.discovery import build
 
     # Find the stock information
     import requests
@@ -47,9 +48,10 @@ def testing():
 
     class Message:
         def __init__(self, perception, popularity, platform):
-            self.perception = perception
-            self.popularity = popularity
+            self.perception = perception 
+            self.popularity = popularity 
             self.platform = platform
+
 
     class Stock:
         def __init__(self, perception, popularity, rating):
@@ -115,6 +117,52 @@ def testing():
                 messages.append(message)
             return messages
 
+    class Youtube:
+        def __init__(self):
+            YOUTUBE_API_KEY = "AIzaSyB74mxAEK_V0tCoh5R0Qh3G9x688xa3JFo"
+            self.youtube = build('youtube','v3',developerKey = YOUTUBE_API_KEY)
+
+        def getMessages(self, topic):
+            messages = list()
+            title_request = self.youtube.search().list(q=topic,part='snippet',type="video",
+                                publishedAfter='2021-11-07T00:00:00Z', maxResults = 100)
+            res1 = title_request.execute()
+            ids = ""
+            titles = list()
+            for item in res1['items']:
+                titles.append(item['snippet']['title'])
+                ids = ids + str(item['id']['videoId']) + ","
+            ids = ids[:-1]
+            statistics_request = self.youtube.videos().list(id = ids, part='statistics',maxResults = 100)
+            res2 = statistics_request.execute()
+            index = 0
+            for item in res2['items']:
+                title = titles[index]
+                sentence = Sentence(title)
+                classifier.predict(sentence)
+                if sentence.labels[0].score < 0.8:
+                    perception = 0
+                elif sentence.labels[0].value == 'POSITIVE':
+                    perception = 1
+                else:
+                    perception = -1
+                print(item['statistics'])
+                
+                views = int(item['statistics']['viewCount'])
+                if 'likeCount' in item['statistics']:
+                    likes = int(item['statistics']['likeCount'])
+                    dislikes = int(item['statistics']['dislikeCount'])
+                    if dislikes == 0:
+                        likeDislikeRatio = 1
+                    else:
+                        likeDislikeRatio = likes / (dislikes + likes)
+                else:
+                    likeDislikeRatio = 1
+                perception *= likeDislikeRatio
+                message = Message(perception, views, "Youtube")
+                messages.append(message)
+                index += 1
+            return messages
     class News:
         def __init__(self):
             key = '67e2b64352e14eb4af0a5517e50e6379'
@@ -146,6 +194,7 @@ def testing():
     twitter = Twitter()
     reddit = Reddit()
     news = News()
+    youtube = Youtube()
 
     # Twitter
     twitterMessages = twitter.getMessages(topic)
@@ -173,26 +222,52 @@ def testing():
         reddit_val = reddit_sum / 10000
     reddit_perception = reddit_perception / reddit_sum
 
+    # Youtube
+    youtubeMessages = youtube.getMessages(topic)
+    youtube_sum = 0.0
+    youtube_perception = 0.0
+    for youtubeMessage in youtubeMessages:
+        youtube_perception += ((youtubeMessage.popularity + 1) * youtubeMessage.perception)
+        youtube_sum += (youtubeMessage.popularity + 1)
+    if youtube_sum > 10000000:
+        youtube_val = 1
+    else:
+        youtube_val = youtube_sum / 10000000
+    youtube_perception = youtube_perception / youtube_sum
+
     # News
     newsMessages = news.getMessages(topic)
-    if newsMessages[0].popularity > 5000:
+
+    if len(newsMessages) == 0:
+        news_val = 0
+    elif newsMessages[0].popularity > 5000:
         news_val = 1
     else:
         news_val = newsMessages[0].popularity / 5000
     news_perception = 0.0
     for newsMessage in newsMessages:
         news_perception += newsMessage.perception
-    news_perception = news_perception / len(newsMessages)
+    if len(newsMessages) == 0:
+        news_perception = 0
+    else:
+        news_perception = news_perception / len(newsMessages)
+    print(twitter_val)
+    print(reddit_val)
+    print(youtube_val)
+    total_score = ((((twitter_val + reddit_val + youtube_val) / 2) + news_val) / 1.25) + 0.3
+    total_perception = ((((twitter_perception + reddit_perception + youtube_val) / 2) + news_perception) / 2) + 0.2
 
-    total_score = (((twitter_val + reddit_val) / 2) + news_val) / 2
-    total_perception = (((twitter_perception + reddit_perception) / 2) + news_perception) / 2
-    overall_rating = total_score * total_perception * 100
+    import math
+
+    overall_rating = abs(total_perception) / total_perception * pow(math.tanh(8 * total_score * total_perception), 2) #Overall Rating = tanh^2(constant * popularity * perception) * 100 * -1 if perception is negative, this gives a range from [-100, 100]
+    stock = Stock(round(total_perception, 2), round(total_score * 100, 2), round(overall_rating * 100, 2))
 
     print("Getting values for stock: " + name)
-    print(total_score, total_perception, overall_rating)
+    #print(total_score, total_perception, overall_rating)
     stock_list = [name, stock_tkr, description, market_cap, similar, total_perception, total_score, overall_rating, current_price, open_price, close_price, logo, growth, recommend]
-    stock = Stock(total_perception, total_score, overall_rating)
-
+    print(total_perception)
+    print(total_score)
+    print(overall_rating)
     return jsonify(stock_list)
 
 

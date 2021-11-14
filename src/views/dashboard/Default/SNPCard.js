@@ -85,88 +85,6 @@ const PopularCard = ({ isLoading }) => {
                                         <Grid container alignItems="center" justifyContent="space-between">
                                             <Grid item>
                                                 <Typography variant="subtitle1" color="inherit">
-                                                    Netflix, Inc. (NFLX)
-                                                </Typography>
-                                            </Grid>
-                                            <Grid item>
-                                                <Grid container alignItems="center" justifyContent="space-between">
-                                                    <Grid item>
-                                                        <Typography variant="subtitle1" color="inherit">
-                                                            $682.61
-                                                        </Typography>
-                                                    </Grid>
-                                                    <Grid item>
-                                                        <Avatar
-                                                            variant="rounded"
-                                                            sx={{
-                                                                width: 16,
-                                                                height: 16,
-                                                                borderRadius: '5px',
-                                                                backgroundColor: theme.palette.success.light,
-                                                                color: theme.palette.success.dark,
-                                                                ml: 2
-                                                            }}
-                                                        >
-                                                            <KeyboardArrowUpOutlinedIcon fontSize="small" color="inherit" />
-                                                        </Avatar>
-                                                    </Grid>
-                                                </Grid>
-                                            </Grid>
-                                        </Grid>
-                                    </Grid>
-                                    <Grid item>
-                                        <Typography variant="subtitle2" sx={{ color: 'success.dark' }}>
-                                            +3.81%
-                                        </Typography>
-                                    </Grid>
-                                </Grid>
-                                <Divider sx={{ my: 1.5 }} />
-                                <Grid container direction="column">
-                                    <Grid item>
-                                        <Grid container alignItems="center" justifyContent="space-between">
-                                            <Grid item>
-                                                <Typography variant="subtitle1" color="inherit">
-                                                    Bank of America Corporation (BAC)
-                                                </Typography>
-                                            </Grid>
-                                            <Grid item>
-                                                <Grid container alignItems="center" justifyContent="space-between">
-                                                    <Grid item>
-                                                        <Typography variant="subtitle1" color="inherit">
-                                                            $46.91
-                                                        </Typography>
-                                                    </Grid>
-                                                    <Grid item>
-                                                        <Avatar
-                                                            variant="rounded"
-                                                            sx={{
-                                                                width: 16,
-                                                                height: 16,
-                                                                borderRadius: '5px',
-                                                                backgroundColor: theme.palette.orange.light,
-                                                                color: theme.palette.orange.dark,
-                                                                marginLeft: 1.875
-                                                            }}
-                                                        >
-                                                            <KeyboardArrowDownOutlinedIcon fontSize="small" color="inherit" />
-                                                        </Avatar>
-                                                    </Grid>
-                                                </Grid>
-                                            </Grid>
-                                        </Grid>
-                                    </Grid>
-                                    <Grid item>
-                                        <Typography variant="subtitle2" sx={{ color: theme.palette.orange.dark }}>
-                                            -1.22%
-                                        </Typography>
-                                    </Grid>
-                                </Grid>
-                                <Divider sx={{ my: 1.5 }} />
-                                <Grid container direction="column">
-                                    <Grid item>
-                                        <Grid container alignItems="center" justifyContent="space-between">
-                                            <Grid item>
-                                                <Typography variant="subtitle1" color="inherit">
                                                     Meta Platforms, Inc. (FB)
                                                 </Typography>
                                             </Grid>
@@ -197,8 +115,90 @@ const PopularCard = ({ isLoading }) => {
                                         </Grid>
                                     </Grid>
                                     <Grid item>
-                                        <Typography variant="subtitle2" sx={{ color: theme.palette.success.dark }}>
+                                        <Typography variant="subtitle2" sx={{ color: 'success.dark' }}>
                                             +4.01%
+                                        </Typography>
+                                    </Grid>
+                                </Grid>
+                                <Divider sx={{ my: 1.5 }} />
+                                <Grid container direction="column">
+                                    <Grid item>
+                                        <Grid container alignItems="center" justifyContent="space-between">
+                                            <Grid item>
+                                                <Typography variant="subtitle1" color="inherit">
+                                                    Amazon.com, Inc. (AMZN)
+                                                </Typography>
+                                            </Grid>
+                                            <Grid item>
+                                                <Grid container alignItems="center" justifyContent="space-between">
+                                                    <Grid item>
+                                                        <Typography variant="subtitle1" color="inherit">
+                                                            $3,525.15
+                                                        </Typography>
+                                                    </Grid>
+                                                    <Grid item>
+                                                        <Avatar
+                                                            variant="rounded"
+                                                            sx={{
+                                                                width: 16,
+                                                                height: 16,
+                                                                borderRadius: '5px',
+                                                                backgroundColor: theme.palette.orange.light,
+                                                                color: theme.palette.orange.dark,
+                                                                marginLeft: 1.875
+                                                            }}
+                                                        >
+                                                            <KeyboardArrowDownOutlinedIcon fontSize="small" color="inherit" />
+                                                        </Avatar>
+                                                    </Grid>
+                                                </Grid>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid item>
+                                        <Typography variant="subtitle2" sx={{ color: theme.palette.orange.dark }}>
+                                            -1.52%
+                                        </Typography>
+                                    </Grid>
+                                </Grid>
+                                <Divider sx={{ my: 1.5 }} />
+                                <Grid container direction="column">
+                                    <Grid item>
+                                        <Grid container alignItems="center" justifyContent="space-between">
+                                            <Grid item>
+                                                <Typography variant="subtitle1" color="inherit">
+                                                    Netflix, Inc. (NFLX)
+                                                </Typography>
+                                            </Grid>
+                                            <Grid item>
+                                                <Grid container alignItems="center" justifyContent="space-between">
+                                                    <Grid item>
+                                                        <Typography variant="subtitle1" color="inherit">
+                                                            $682.61
+                                                        </Typography>
+                                                    </Grid>
+                                                    <Grid item>
+                                                        <Avatar
+                                                            variant="rounded"
+                                                            sx={{
+                                                                width: 16,
+                                                                height: 16,
+                                                                borderRadius: '5px',
+                                                                backgroundColor: theme.palette.success.light,
+                                                                color: theme.palette.success.dark,
+                                                                ml: 2
+                                                            }}
+                                                        >
+                                                            <KeyboardArrowUpOutlinedIcon fontSize="small" color="inherit" />
+                                                        </Avatar>
+                                                    </Grid>
+                                                </Grid>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid item>
+                                        <Typography variant="subtitle2" sx={{ color: theme.palette.success.dark }}>
+                                            +3.81%
                                         </Typography>
                                     </Grid>
                                 </Grid>
@@ -280,7 +280,7 @@ const PopularCard = ({ isLoading }) => {
                                     </Grid>
                                     <Grid item>
                                         <Typography variant="subtitle2" sx={{ color: theme.palette.orange.dark }}>
-                                            +4.01%
+                                            +1.97%
                                         </Typography>
                                     </Grid>
                                 </Grid>

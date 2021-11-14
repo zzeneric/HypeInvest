@@ -10,6 +10,8 @@ import ChartCard from './ChartCard'
 
 let query = (new URLSearchParams(window.location.search)).get("query")
 
+const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
+
 fetch("http://127.0.0.1:5000/test?name=" + query)
         .then(response => response.json())
         .then(currData => {
@@ -21,12 +23,12 @@ fetch("http://127.0.0.1:5000/test?name=" + query)
             document.getElementById('desc').innerText = currData[2]
             document.getElementById('market_cap').innerText = currData[3]
             document.getElementById('similar').innerText = currData[4]
-            document.getElementById('rating_total').innerText = (currData[5]*100).toFixed(1)
+            document.getElementById('rating_total').innerText = clamp((currData[7]*100).toFixed(1),-98,97)
 
-            document.getElementById('rating_perception').innerText = (currData[6]*100).toFixed(1)
-            document.getElementById('rating_popularity').innerText = (currData[7]*10).toFixed(1)
-            document.getElementById('rating_growth').innerText = (currData[11]*100).toFixed(1)
-            document.getElementById('rating_recommend').innerText = (currData[12]*10).toFixed(1)
+            document.getElementById('rating_perception').innerText = clamp((currData[5]*100).toFixed(1),-98,97)
+            document.getElementById('rating_popularity').innerText = clamp((currData[6]*100).toFixed(1),-98,97)
+            document.getElementById('rating_growth').innerText = clamp((currData[12]*10).toFixed(1),-98,97)
+            document.getElementById('rating_recommend').innerText = clamp((currData[13]*10).toFixed(1),-98,97)
 
             
             document.getElementById('open').innerText = currData[9]

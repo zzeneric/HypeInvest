@@ -32,10 +32,7 @@ const Dashboard = () => (
 
         <MainCard>
             <Typography variant="h3"> <center>
-                Lorem ipsum dolor sit amen, consenter nipissing eli, sed do elusion tempos incident ut laborers et doolie magna alissa. Ut enif
-                ad minim venice, quin nostrum exercitation illampu laborings nisi ut liquid ex ea commons construal. Duos aube grue dolor in
-                reprehended in voltage veil esse colum doolie eu fujian bulla parian. Exceptive sin ocean cuspidate non president, sunk in culpa
-                qui officiate descent molls anim id est labours.
+                As the world of investing becomes more competitive, so too must stock market prediction algorithms that guide investors. Traditional stock market prediction algorithms generally don't use information from social media or the news in their predictions. This is a significant weakness for these predictions, as they ignore a major component of why many people choose to invest in a company. If a company is both talked about and is viewed positively, more people are inclined to support the company by investing in it. This is the major inspiration for HypeInvest.
             </center> </Typography>
         </MainCard>
     </MainCard>
