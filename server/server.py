@@ -1,6 +1,7 @@
 import json
 
 from flask import Flask, jsonify, request
+import yfinance as yf
 from polygon import RESTClient
 
 app = Flask(__name__)
@@ -14,6 +15,7 @@ def home():
 @app.route("/test")
 def testing():
     stock_tkr = request.args.get('name')
+    print(stock_tkr)
 
     from flair.models import TextClassifier
     from flair.data import Sentence
@@ -27,10 +29,19 @@ def testing():
         'https://api.polygon.io/v1/meta/symbols/' + stock_tkr + '/company?apiKey=0ip9Jo9miAua0zJYVDvjjDIAluVzRJJX')
 
     stock_details = response.json()
+    
+    stock_raw = yf.Ticker(stock_tkr)
+    stock_data = stock_raw.info
+
     name = stock_details["name"]
-    description = stock_details["description"]
     market_cap = stock_details['marketcap']
     similar = stock_details['similar']
+    
+    description = stock_data["longBusinessSummary"]
+    current_price = stock_data["currentPrice"]
+    open_price = stock_data["regularMarketOpen"]
+    close_price = stock_data["previousClose"]
+    logo = stock_data["logo_url"]
 
     class Message:
         def __init__(self, perception, popularity, platform):
@@ -177,7 +188,7 @@ def testing():
 
     print("Getting values for stock: " + name)
     print(total_score, total_perception, overall_rating)
-    stock_list = [name, stock_tkr, description, market_cap, similar, total_perception, total_score, overall_rating]
+    stock_list = [name, stock_tkr, description, market_cap, similar, total_perception, total_score, overall_rating, current_price, open_price, close_price, logo]
     stock = Stock(total_perception, total_score, overall_rating)
 
     return jsonify(stock_list)

@@ -1,5 +1,7 @@
 // material-ui
 import { Typography } from '@mui/material';
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
 
 // project imports
 import MainCard from 'ui-component/cards/MainCard';

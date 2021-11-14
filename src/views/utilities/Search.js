@@ -8,26 +8,46 @@ import SecondaryAction from 'ui-component/cards/CardSecondaryAction';
 import { gridSpacing } from 'store/constant';
 import ChartCard from './ChartCard'
 
-import data from './testData.json'
-
-const newData = require('./currentSearch.json');
-console.log(newData);
-
 let query = (new URLSearchParams(window.location.search)).get("query")
-console.log(query)
 
-fetch(newData.api)
+fetch("http://127.0.0.1:5000/test?name=" + query)
         .then(response => response.json())
-        .then(currData => console.log(currData));
+        .then(currData => {
+            console.log(currData);
+            //document.getElementById('summaryTitle').title = 'Lol'
+            //document.getElementById('summaryTitle').title = 'Market Summary > ' + currData[0] + '[' + currData[1] + "]"
+            document.getElementById('name').innerText = 'About ' + currData[0]
+            document.getElementById('handle').innerText = currData[1]
+            document.getElementById('desc').innerText = currData[2]
+            document.getElementById('market_cap').innerText = currData[3]
+            document.getElementById('similar').innerText = currData[4]
+            document.getElementById('rating_total').innerText = currData[5]
+            document.getElementById('rating_perception').innerText = currData[6]
+            document.getElementById('rating_popularity').innerText = currData[7]
 
+            
+            document.getElementById('open').innerText = currData[9]
+            document.getElementById('close').innerText = currData[10]
+            
+            document.getElementById('graph_name').innerText = currData[0]
+            document.getElementById('graph_price').innerText = currData[8]
+            document.getElementById('graph_change').innerText = currData[0]
+        });
+
+        
+
+        
 // ==============================|| TYPOGRAPHY ||============================== //
+const title = "Market Summary > " + query
+
 const Typography = () => (
-    <MainCard title="Market Summary > Twitter [TWTR]" secondary={<SecondaryAction link="https://next.material-ui.com/system/typography/" />}>
+    
+    <MainCard title={title} secondary={<SecondaryAction link="https://next.material-ui.com/system/typography/" />} id="summaryTitle">
         <br/>
         
         <Grid container spacing={gridSpacing}>
             <Grid item xs={12} sm={0}>
-                <ChartCard>
+                <ChartCard name="NAME">
                 </ChartCard>
             </Grid>
 
@@ -37,13 +57,13 @@ const Typography = () => (
                 <SubCard title="General Information">
                     <Grid container direction="column" spacing={1}>
                         <Grid item>
-                            <MuiTypography variant="subtitle1" gutterBottom>
-                                About {data.name}
+                            <MuiTypography variant="subtitle1" gutterBottom id="name">
+                                About {query}
                             </MuiTypography>
                         </Grid>
                         <Grid item>
-                            <MuiTypography variant="subtitle2" gutterBottom>
-                                {data.info}
+                            <MuiTypography variant="subtitle2" gutterBottom id="desc">
+                                Loading...
                             </MuiTypography>
                         </Grid>
 
@@ -53,8 +73,8 @@ const Typography = () => (
                             </MuiTypography>
                         </Grid>
                         <Grid item>
-                            <MuiTypography variant="subtitle2" gutterBottom>
-                                {data.handle}
+                            <MuiTypography variant="subtitle2" gutterBottom id="handle">
+                                Loading...
                             </MuiTypography>
                         </Grid>
 
@@ -64,8 +84,8 @@ const Typography = () => (
                             </MuiTypography>
                         </Grid>
                         <Grid item>
-                            <MuiTypography variant="subtitle2" gutterBottom>
-                                {data.market_cap}
+                            <MuiTypography variant="subtitle2" gutterBottom id="market_cap">
+                                Loading...
                             </MuiTypography>
                         </Grid>
 
@@ -75,8 +95,8 @@ const Typography = () => (
                             </MuiTypography>
                         </Grid>
                         <Grid item>
-                            <MuiTypography variant="subtitle2" gutterBottom>
-                                {data.prev_close}
+                            <MuiTypography variant="subtitle2" gutterBottom id="close">
+                                Loading...
                             </MuiTypography>
                         </Grid>
 
@@ -86,8 +106,19 @@ const Typography = () => (
                             </MuiTypography>
                         </Grid>
                         <Grid item>
-                            <MuiTypography variant="subtitle2" gutterBottom>
-                                {data.open}
+                            <MuiTypography variant="subtitle2" gutterBottom id="open">
+                                Loading...
+                            </MuiTypography>
+                        </Grid>
+
+                        <Grid item>
+                            <MuiTypography variant="subtitle1" gutterBottom>
+                                Similar Companies
+                            </MuiTypography>
+                        </Grid>
+                        <Grid item>
+                            <MuiTypography variant="subtitle2" gutterBottom id="similar">
+                                Loading...
                             </MuiTypography>
                         </Grid>
 
@@ -105,8 +136,8 @@ const Typography = () => (
                             </MuiTypography>
                         </Grid>
                         <Grid item>
-                            <MuiTypography variant="subtitle2" gutterBottom>
-                                67
+                            <MuiTypography variant="subtitle2" gutterBottom id="rating_total">
+                                Loading...
                             </MuiTypography>
                         </Grid>
 
@@ -116,8 +147,8 @@ const Typography = () => (
                             </MuiTypography>
                         </Grid>
                         <Grid item>
-                            <MuiTypography variant="subtitle2" gutterBottom>
-                                32
+                            <MuiTypography variant="subtitle2" gutterBottom id="rating_perception">
+                                Loading...
                             </MuiTypography>
                         </Grid>
 
@@ -127,8 +158,8 @@ const Typography = () => (
                             </MuiTypography>
                         </Grid>
                         <Grid item>
-                            <MuiTypography variant="subtitle2" gutterBottom>
-                                46
+                            <MuiTypography variant="subtitle2" gutterBottom id="rating_popularity">
+                                Loading...
                             </MuiTypography>
                         </Grid>
 

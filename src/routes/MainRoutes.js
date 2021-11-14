@@ -4,13 +4,16 @@ import { lazy } from 'react';
 import MainLayout from 'layout/MainLayout';
 import Loadable from 'ui-component/Loadable';
 
+// home routing
+const HomeDefault = Loadable(lazy(() => import('views/home/home')));
+
 // dashboard routing
 const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
 
 // utilities routing
 const UtilsTypography = Loadable(lazy(() => import('views/utilities/Search')));
 // sample page routing
-const SamplePage = Loadable(lazy(() => import('views/sample-page')));
+const DocPage = Loadable(lazy(() => import('views/documentation')));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -20,6 +23,10 @@ const MainRoutes = {
     children: [
         {
             path: '/',
+            element: <HomeDefault />
+        },
+        {
+            path: '/dashboard',
             element: <DashboardDefault />
         },
         {
@@ -27,8 +34,8 @@ const MainRoutes = {
             element: <UtilsTypography />
         },
         {
-            path: '/sample-page/',
-            element: <SamplePage />
+            path: '/documentation/',
+            element: <DocPage />
         }
     ]
 };
