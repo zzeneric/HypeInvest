@@ -190,7 +190,6 @@ if youtube_sum > 10000000:
     youtube_val = 1
 else:
     youtube_val = youtube_sum / 10000000
-print(youtube_sum)
 youtube_perception = youtube_perception / youtube_sum
 
 # News
