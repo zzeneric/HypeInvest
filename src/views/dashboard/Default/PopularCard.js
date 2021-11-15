@@ -116,7 +116,7 @@ const PopularCard = ({ isLoading }) => {
                                     </Grid>
                                     <Grid item>
                                         <Typography variant="subtitle2" sx={{ color: 'success.dark' }}>
-                                            10% Profit
+                                            -2.83%
                                         </Typography>
                                     </Grid>
                                 </Grid>
@@ -133,7 +133,7 @@ const PopularCard = ({ isLoading }) => {
                                                 <Grid container alignItems="center" justifyContent="space-between">
                                                     <Grid item>
                                                         <Typography variant="subtitle1" color="inherit">
-                                                            $100.00
+                                                            $349.78
                                                         </Typography>
                                                     </Grid>
                                                     <Grid item>
@@ -157,7 +157,7 @@ const PopularCard = ({ isLoading }) => {
                                     </Grid>
                                     <Grid item>
                                         <Typography variant="subtitle2" sx={{ color: theme.palette.orange.dark }}>
-                                            10% loss
+                                            +4.01%
                                         </Typography>
                                     </Grid>
                                 </Grid>
