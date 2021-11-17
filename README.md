@@ -6,8 +6,6 @@
 ## Information
 HackInvest is a tool designed to analyze and index a factor that has been ignored much more than it should in the current age of social media and online publications. Especially as we can see in the past couple years, we have seen the rise of the collective, smaller investors. Individually, these individuals cannot make much change, but as we've seen recently, many social media and/or news activity can cause mass change in stock or crypto currency and values. These cannot be predicted due to the very nature of these phenomena, but HypeInvest is able to create an accurate 'Hype Index' using its algorithm developed to weigh different outlets and media differently with natural processing using a perception model along with accounting for differences in popularity of social media posts. 
 
-StackEdit stores your files in your browser, which means all your files are automatically saved locally and are accessible **offline!**
-
 ## Score Algorithm & Methodology
 The 'Hype Index' itself is dependent on two individual scores -- the perception score, and the popularity score. These scores and the Index itself are all relative scores, meaning that they are made in relation to other stocks/cryptos. 
 
